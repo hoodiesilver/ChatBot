@@ -1,0 +1,213 @@
+from random import *
+
+# --- Define your functions below! ---
+def intro():
+    name = input("What's your name? ")
+    print("Hello", name, "! I'm ChatBot!")
+
+def process_input(answer):
+    if(answer == "hi"):
+        say_greeting()
+    elif(answer == "tell me a poem"):
+        say_poem()
+    #elif(answer == "hangman"):
+    #    hangman()
+    elif(answer == "number"):
+        number_game()
+    elif(answer == "commands"):
+        commands()
+    elif(answer == "draw me a picture"):
+        draw_picture()
+    elif(answer == "draw me another picture"):
+        another_picture()
+    elif(answer == "rock"):
+        rockPaperScissors(answer)
+    elif(answer == "paper"):
+        rockPaperScissors(answer)
+    elif(answer == "scissors"):
+        rockPaperScissors(answer)
+    elif (answer != "exit"):
+        say_default()
+
+def say_greeting():
+    print("Hello to you, too!")
+
+#add so that after 3 or 5 say_default, tell them about commands.
+def say_default():
+    print("That's cool!")
+
+def draw_picture():
+    print("    []  ,----.___")
+    print("   __||_/___      '.")
+    print("  / O||    /|       )")
+    print(" /   ""   / /   =._/")
+    print("/________/ /")
+    print("|________|/   dew")
+
+def another_picture():
+    print('''                 ."-,.__
+                 `.     `.  ,
+              .--'  .._,'"-' `.
+             .    .'         `'
+             `.   /          ,'
+               `  '--.   ,-"'
+                `"`   |  \
+                   -. \, |
+                    `--Y.'      ___.
+                         \     L._, \
+               _.,        `.   <  <\                _
+             ,' '           `, `.   | \            ( `
+          ../, `.            `  |    .\`.           \ \_
+         ,' ,..  .           _.,'    ||\l            )  '".
+        , ,'   \           ,'.-.`-._,'  |           .  _._`.
+      ,' /      \ \        `' ' `--/   | \          / /   ..\
+    .'  /        \ .         |\__ - _ ,'` `        / /     `.`.
+    |  '          ..         `-...-"  |  `-'      / /        . `.
+    | /           |L__           |    |          / /          `. `.
+   , /            .   .          |    |         / /             ` `
+  / /          ,. ,`._ `-_       |    |  _   ,-' /               ` \
+ / .           \"`_/. `-_ \_,.  ,'    +-' `-'  _,        ..,-.    \`.
+.  '         .-f    ,'   `    '.       \__.---'     _   .'   '     \ \
+' /          `.'    l     .' /          \..      ,_|/   `.  ,'`     L`
+|'      _.-""` `.    \ _,'  `            \ `.___`.'"`-.  , |   |    | \
+||    ,'      `. `.   '       _,...._        `  |    `/ '  |   '     .|
+||  ,'          `. ;.,.---' ,'       `.   `.. `-'  .-' /_ .'    ;_   ||
+|| '              V      / /           `   | `   ,'   ,' '.    !  `. ||
+||/            _,-------7 '              . |  `-'    l         /    `||
+. |          ,' .-   ,' ||               | .-.        `.      .'     ||
+ `'        ,'    `".'    |               |    `.        '. -.'       `'
+          /      ,'      |               |,'    \-.._,.'/'
+          .     /        .               .       \    .''
+        .`.    |         `.             /         :_,'.'
+          \ `...\   _     ,'-.        .'         /_.-'
+           `-.__ `,  `'   .  _.>----''.  _  __  /
+                .'        /"'          |  "'   '_
+               /_|.-'\ ,".             '.'`__'-( \
+                 / ,"'"\,'               `/  `-.|" mh''')
+
+def rockPaperScissors(input):
+    pick = ["rock", "paper", "scissors"]
+    aRandomNumber = randint(0, 2)
+    print(pick[aRandomNumber])
+    if(input == pick[aRandomNumber]):
+        print("Oh! It's a tie!")
+    elif (input == "rock" and pick[aRandomNumber] == "scissors"):
+        print("You win!")
+    elif (input == "scissors" and pick[aRandomNumber] == "paper"):
+        print("You win!")
+    elif (input == "paper" and pick[aRandomNumber] == "rock"):
+        print("You win!")
+    elif (input == "scissors" and pick[aRandomNumber] == "rock"):
+        print("I win!")
+    elif (input == "paper" and pick[aRandomNumber] == "scissors"):
+        print("I win!")
+    elif (input == "rock" and pick[aRandomNumber] == "paper"):
+        print("I win!")
+
+
+def commands():
+    print("Try saying 'tell me a poem' or 'number'. You can also type 'exit' to leave.")
+
+def say_goodbye():
+    print("That's okay. Talk to you later.")
+
+def say_poem():
+    print("A Word to Husbands by Ogden Nash.")
+    print("To keep your marriage brimming")
+    print("With love in the loving cup,")
+    print("Whenever you're wrong, admit it;")
+    print("Whenever you're right, shut up.")
+
+def number_game():
+    aRandomNumber = randint(1, 20)
+    tries = 1
+    # For Testing: print(aRandomNumber)
+
+    while tries <= 3:
+        guess = input("Guess a number between 1 and 20 (inclusive): ")
+        if not guess.isnumeric(): # checks if a string is only digits 0 to 9
+        	print("That's not a positive whole number, try again!")
+        else:
+        	guess = int(guess) # converts a string to an integer
+        if(guess == aRandomNumber):
+            print("You win!")
+            break
+        else:
+            print("Try again.")
+            tries += 1
+        if(aRandomNumber > guess):
+            print("higher")
+        if(aRandomNumber < guess):
+            print("lower")
+        continue
+
+#HANGMAN needs import random to function.
+#def hangman():
+#    potential_words = ["languid", "deserted", "stroke", "crime", "plot", "launch", "strong", "pour", "lazy", "store", "flagrant", "switch"]
+
+#    word = random.choice(potential_words)
+
+#    word = word.lower()
+
+#    guesses = []
+#    numfails = 0
+#    maxfails = 7
+#    wordToGuess = []
+
+#    for letter in word:
+#    	wordToGuess.append("_")
+
+#    done = False
+
+#    while not done:
+#    	print("-----------------------------------")
+#    	print("Lives Left: ", maxfails - numfails)
+#    	print("Guesses So Far: ", guesses)
+#    	print("Current Word: ", wordToGuess)
+
+#    	guess = input("Guess a letter: ")
+#    	guess = guess.lower()
+
+#    	if(len(guess) > 1):
+#    		print("That's too long!")
+#    	elif(guess.isalpha() == False):
+#    		print("That's not a letter!")
+#    	elif(guess in guesses):
+#    		print("You already guessed that!")
+#    	else:
+#    		guesses.append(guess)
+
+#    		if(guess in word):
+#    			print("You got a letter!")
+#    			for idx in range(0, len(word)):
+#    				if word[idx] == guess:
+#    					wordToGuess[idx] = guess
+
+#    			done = True
+#    			for idx in range(0, len(wordToGuess)):
+#    				if wordToGuess[idx] == "_":
+#    					done = False
+#    					break
+#    			if done:
+#    				print("You won! It was: " + word)
+#    		else:
+#    			print("Wrong guess!")
+#    			numfails += 1
+
+#    			if numfails >= maxfails:
+#    				print("You lost!")
+#    				done = True
+
+# --- Put your main program below! ---
+def main():
+    intro()
+    while True:
+        answer = input("(What will you say?) ")
+        process_input(answer)
+        if (answer == "exit"):
+            say_goodbye()
+            break
+
+# DON'T TOUCH! Setup code that runs your main() function.
+if __name__ == "__main__":
+  main()
